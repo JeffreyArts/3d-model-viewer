@@ -157,8 +157,8 @@ class ModelViewer3D {
     }
 
     updateCameraSize() {
-        const width = this.targetEl.clientWidth;
-        const height = this.targetEl.clientHeight;
+        const width = document.body.clientWidth;
+        const height = document.body.clientHeight;
         const size = Math.min(width, height);
         this.renderer.setSize(size, size);
         this.setCameraPosition(size);

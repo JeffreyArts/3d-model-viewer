@@ -5,7 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Model Viewer</title>
     <style>
-        body { margin: 0; overflow: hidden;}
+        html,
+        body { margin: 0; overflow: hidden; min-height: 100vh;}
+        body {
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+        body.__isMouseDown {
+            cursor: grabbing;
+        }
+        #viewer-container {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
         .header {
             position: fixed;
             top: 0;

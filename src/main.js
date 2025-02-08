@@ -13,5 +13,22 @@ if (!cleanParam) {
     document.querySelector(".header").classList.add("__isVisible")
 }
 
+// Add mouse down / touch start listeners to change mouse cursor
+document.addEventListener("mousedown", () => {
+    document.body.classList.add("__isMouseDown")
+})
+document.addEventListener("mouseup", () => {
+    document.body.classList.remove("__isMouseDown")
+})
+document.addEventListener("touchstart", () => {
+    document.body.classList.add("__isMouseDown")
+})
+document.addEventListener("touchend", () => {
+    document.body.classList.remove("__isMouseDown")
+})
+
+
 // Initialize the 3D model viewer
-const viewer = new ModelViewer3D(modelSrc, colorHex, "#viewer-container")
+document.onload = () => {
+    const viewer = new ModelViewer3D(modelSrc, colorHex, "#viewer-container")
+}
