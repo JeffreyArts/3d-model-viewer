@@ -1,14 +1,17 @@
 import ModelViewer3D from "./model-viewer-3d"
+
+// Remove this function when building
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search)
     return urlParams.get(param)
 }
 
 // Extract the "src", "color", and "clean" parameters from the URL
-const modelSrc = getQueryParam("src")
-const colorHex = getQueryParam("color") || "#FFFFFF" // Default to white if no color is provided
-const cleanParam = getQueryParam("clean")
+const modelSrc = getQueryParam("src") // Replace with {{MODEL_SRC}} when building
+const colorHex = getQueryParam("color") || "#FFFFFF" // Replace with {{COLOR}} when building
+const cleanParam = getQueryParam("clean") // Remove this when building
 
+// Remove this if statement when building + the HTML code from index.html
 if (!cleanParam) {
     document.querySelector(".header").classList.add("__isVisible")
 }
@@ -29,6 +32,6 @@ document.addEventListener("touchend", () => {
 
 
 // Initialize the 3D model viewer
-document.onload = () => {
+window.onload = () => {
     const viewer = new ModelViewer3D(modelSrc, colorHex, "#viewer-container")
 }
