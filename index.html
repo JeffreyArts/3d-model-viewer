@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model Viewer</title>
+    <style>
+        body { margin: 0; overflow: hidden;}
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            opacity: 0;
+        }
+        .header.__isVisible { opacity: 1; }
+    </style>
+</head>
+<body>
+    <script type="module" src="/src/main.js"></script>
+
+    <header class="header">
+        <h1>View 3D Model</h1>
+        <p>Use query parameters to control behavior:</p>
+        <ul>
+            <li><b>src</b>: The path to your 3D model file (STL, OBJ). Example: ?src=/models/model.stl</li>
+            <li><b>color</b>: Set the color of the model (HEX or CSS color name). Example: ?color=red or ?color=FF5733</li>
+            <li><b>clean</b>: Add this parameter to hide the text and the header. Example: ?clean</li>
+        </ul>
+    </header>
+
+    <div id="viewer-container"></div>
+</body>
+</html>
