@@ -29,7 +29,7 @@ class ModelViewer3D {
             this.targetEl = targetEl;
         }
 
-
+        this.offset = 0;
         this.scene = new Scene();
         this.camera = new OrthographicCamera(-5, 5, 5, -5, 0.1, 1000);
         this.renderer = new WebGLRenderer({ alpha: true });
@@ -116,8 +116,8 @@ class ModelViewer3D {
         const box = new Box3().setFromObject(this.model);
         const center = box.getCenter(new Vector3());
         const size = box.getSize(new Vector3()).length();
-        const offset = size * 1.5 // Distance from the object to fit it well within view
-        this.camera.position.set(offset, offset, offset)
+        this.offset = size * 1.5 // Distance from the object to fit it well within view
+        this.camera.position.set(this.offset, this.offset, this.offset)
         this.camera.lookAt(center)
 
         // Adjust camera's orthographic view to keep the object visible
@@ -144,12 +144,11 @@ class ModelViewer3D {
     }
 
     validateColor(color) {
-        if (color && color[0] !== "#") {
-            color = "#" + color;
-        }
-
-        const hexRegex = /^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})$/;
+        const hexRegex = /^([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})$/;
         if (hexRegex.test(color)) {
+            if (color && color[0] !== "#") {
+                color = "#" + color;
+            }
             return new Color(color);
         }
 
