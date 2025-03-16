@@ -108,18 +108,20 @@ class ModelViewer3D {
         }
     }
 
-    setCameraPosition() {
+    setCameraPosition(size) {
         if (!this.model) {
             return
         }
         
         const box = new Box3().setFromObject(this.model);
         const center = box.getCenter(new Vector3());
-        const size = box.getSize(new Vector3()).length();
-        this.offset = size * 1.5 // Distance from the object to fit it well within view
+        this.offset = size 
         this.camera.position.set(this.offset, this.offset, this.offset)
         this.camera.lookAt(center)
 
+        this.camera.near = Math.max(0.1, size * 0.01); // Prevent too small near plane
+        this.camera.far = size * 10; // Ensure the object is within the far plane
+    
         // Adjust camera's orthographic view to keep the object visible
         this.camera.left = -size / 2
         this.camera.right = size / 2
